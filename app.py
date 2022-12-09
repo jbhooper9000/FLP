@@ -11,7 +11,7 @@ st.set_page_config(page_title ='Family Law Partners - Dashboard',
 
 @st.cache
 def getdf():
-    df = pd.read_excel("C:/Users/44744/FLP/PyTransform.xlsx", engine='openpyxl')
+    df = pd.read_excel("https://github.com/jbhooper9000/FLP/blob/main/PyTransform.xlsx", engine='openpyxl')
     return df
 
 df=getdf()
