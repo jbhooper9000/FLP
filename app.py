@@ -13,7 +13,7 @@ st.set_page_config(page_title ='Family Law Partners - Dashboard',
 def getdf():
     url = "https://www.github.com/jbhooper9000/FLP/blob/main/PyTransform.xlsx?raw=true"
     r = requests.get(url)
-    df = pd.read_excel(r.content)
+    df = pd.read_excel(r.content, engine='openpyxl')
     return df
 
 df=getdf()
