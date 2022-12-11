@@ -3,7 +3,7 @@ import plotly.express as px
 import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-
+import requests
 
 st.set_page_config(page_title ='Family Law Partners - Dashboard',
                    page_icon =':chart_with_upwards_trend:',
@@ -11,7 +11,9 @@ st.set_page_config(page_title ='Family Law Partners - Dashboard',
 
 @st.cache
 def getdf():
-    df = pd.read_excel("https://www.github.com/jbhooper9000/FLP/blob/main/PyTransform.xlsx?raw=true")
+    url = "https://www.github.com/jbhooper9000/FLP/blob/main/PyTransform.xlsx?raw=true"
+    r = requests.get(url)
+    df = pd.read_excel(r.content)
     return df
 
 df=getdf()
