@@ -152,11 +152,11 @@ st.markdown('---')
 
 # --- HIDE Streamlit STYLE
 
-hide_style = """
-            <style>
-            MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_style, unsafe_allow_html=True)
+#hide_style = """
+ #           <style>
+  #          MainMenu {visibility: hidden;}
+   #         footer {visibility: hidden;}
+    #        header {visibility: hidden;}
+     #       </style>
+      #      """
+#st.markdown(hide_style, unsafe_allow_html=True)
