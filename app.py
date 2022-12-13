@@ -21,6 +21,18 @@ df=getdf()
 st.sidebar.image("Logo-2023.png", use_column_width=True)
 st.sidebar.header("Filters:")
 
+container = st.sidebar.beta_container()
+all = st.sidebar.checkbox("Select all")
+ 
+if all:
+    selected_options = container.multiselect("Location",
+                                  options= df.office.unique(),
+                                  default= df.office.unique()
+                                  )
+else:
+    selected_options =  container.multiselect("Location",
+                                  options= df.office.unique()
+                                  )
 
 
 case_type = st.sidebar.multiselect("Case Type",
