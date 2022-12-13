@@ -21,16 +21,16 @@ df=getdf()
 st.sidebar.image("Logo-2023.png", use_column_width=True)
 st.sidebar.header("Filters:")
 
-container = st.sidebar.beta_container()
+container = st.sidebar.container()
 all = st.sidebar.checkbox("Select all")
  
 if all:
-    selected_options = container.multiselect("Location",
+    office = container.multiselect("Location",
                                   options= df.office.unique(),
                                   default= df.office.unique()
                                   )
 else:
-    selected_options =  container.multiselect("Location",
+    office =  container.multiselect("Location",
                                   options= df.office.unique()
                                   )
 
@@ -64,7 +64,7 @@ partner_solicitor = st.sidebar.multiselect("Partner Solicitor",
 
 
 df_selection = df.query(
-    "case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor"
+    "office == @office & case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor"
     )
 
 
