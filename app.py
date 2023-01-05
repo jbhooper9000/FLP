@@ -24,7 +24,7 @@ st.sidebar.header("Filters:")
 def sidebarfilter(filter, label):
   
   container = st.sidebar.container()
-  all = st.sidebar.checkbox("Select all", value=True)
+  all = st.sidebar.checkbox("Select all", value=True, key=label)
  
   if all:
       box = container.multiselect(label,
