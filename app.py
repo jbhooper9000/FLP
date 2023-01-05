@@ -35,7 +35,7 @@ def sidebarfilter(filter):
       box =  container.multiselect(f'filter',
                                       options= df[filter].unique()
                                       )
-  return box
+  return box, all
 
 sidebarfilter('office')
 
