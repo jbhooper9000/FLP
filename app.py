@@ -37,7 +37,7 @@ def sidebarfilter(filter):
                                       )
   return box
 
-Location = sidebarfilter('office')
+office = sidebarfilter('office')
 
 case_type = st.sidebar.multiselect("Case Type",
                                   options= df.case_type.unique(),
