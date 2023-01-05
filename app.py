@@ -38,33 +38,11 @@ def sidebarfilter(filter, label):
   return box
 
 office = sidebarfilter('office', 'Location')
-
-case_type = st.sidebar.multiselect("Case Type",
-                                  options= df.case_type.unique(),
-                                  default= df.case_type.unique()
-                                  )
-
-dr_used = st.sidebar.multiselect("DR Type",
-                                  options= df.dr_used.unique(),
-                                  default= df.dr_used.unique()
-                                  )
-
-children = st.sidebar.multiselect("Children",
-                                  options= df.children.unique(),
-                                  default= df.children.unique()
-                                  )
-
-
-
-family_home = st.sidebar.multiselect("Family Home",
-                                  options= df.family_home.unique(),
-                                  default= df.family_home.unique()
-                                  )
-
-partner_solicitor = st.sidebar.multiselect("Partner Solicitor",
-                                  options= df.partner_solicitor.unique(),
-                                  default= df.partner_solicitor.unique()
-                                  )
+case_type = sidebarfilter('case_type', 'Case Type')
+dr_used = sidebarfilter('dr_used', 'DR Used')
+children = sidebarfilter('children', 'Children')
+family_home = sidebarfilter('family_home', 'Family Home')
+partner_solicitor = sidebarfilter('partner_solicitor', 'Partner Solicitor')
 
 
 df_selection = df.query(
