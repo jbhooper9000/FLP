@@ -76,7 +76,7 @@ cbar.set_ticks([1,2,3,4,5], labels=['Implacable Hostility (1)', 'Low (2)', 'Medi
 cbar.ax.axvline(df_selection['cooperation'].mean(), color='#636EFA', lw=5, ls=':', dashes=(0.6, 0.6)) 
 cbar.ax.tick_params(labelsize=12) 
 plt.title(f'Average Client/Partner Cooperation Level: {round(df_selection.cooperation.mean(),2)}')
-fig.patch.set_facecolor('#F7F5F3')
+#fig.patch.set_facecolor('#ffffff')
 
 r_col.pyplot(fig)
 
