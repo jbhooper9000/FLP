@@ -79,6 +79,7 @@ num_cases = df_selection.shape[0]
 l_col.subheader(f'Number of Cases: {num_cases}')
 
 # Avg Cooperation Level Plot
+
 fig, ax = plt.subplots(figsize=(8, 1))
 fig.subplots_adjust(bottom=0.5)
 
@@ -92,9 +93,8 @@ cbar.set_ticks([1,2,3,4,5], labels=['Implacable Hostility (1)', 'Low (2)', 'Medi
                                     'High (4)', 'Amicable (5)'])
 cbar.ax.axvline(df_selection['cooperation'].mean(), color='#636EFA', lw=5, ls=':', dashes=(0.6, 0.6)) 
 cbar.ax.tick_params(labelsize=12) 
-plt.title(f'Average Cooperation Level: {round(df_selection.cooperation.mean(),2)}')
+plt.title(f'Average Client/Partner Cooperation Level: {round(df_selection.cooperation.mean(),2)}')
 fig.patch.set_facecolor('#F7F5F3')
-
 
 r_col.pyplot(fig)
 
