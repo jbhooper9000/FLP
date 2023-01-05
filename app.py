@@ -22,7 +22,7 @@ st.sidebar.image("Logo-2023.png", use_column_width=True)
 st.sidebar.header("Filters:")
 
 container = st.sidebar.container()
-all = st.sidebar.checkbox("Select all")
+all = st.sidebar.checkbox("Select all", value=True)
  
 if all:
     office = container.multiselect("Location",
