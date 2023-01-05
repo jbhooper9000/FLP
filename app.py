@@ -37,7 +37,7 @@ def sidebarfilter(filter, label):
                                       )
   return box
 
-office = sidebarfilter('office', '**Location**')
+office = sidebarfilter('office', '📍**Location**')
 case_type = sidebarfilter('case_type', '**Case Type**')
 dr_used = sidebarfilter('dr_used', '**DR Used**')
 children = sidebarfilter('children', '**Children**')
