@@ -96,8 +96,7 @@ else :
 # --- PLOTS ---
 
 fig_lifetimevalue_dist = px.histogram(df_selection, x='lifetime_value', nbins=50)
-fig_lifetimevalue_dist.update_layout(plot_bgcolor='#F7F5F3',
-                               xaxis=(dict(showgrid=False)),
+fig_lifetimevalue_dist.update_layout(xaxis=(dict(showgrid=False)),
                                xaxis_title="Lifetime Value (£)")
 
 fig_casehours_dist = px.histogram(df_selection, x='case_hours', nbins=50)
