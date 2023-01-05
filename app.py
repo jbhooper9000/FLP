@@ -27,22 +27,22 @@ def sidebarfilter(filter, label):
   all = st.sidebar.checkbox("Select all", value=True, key=label)
  
   if all:
-      box = container.multiselect(**label**,
+      box = container.multiselect(label,
                                    options= df[filter].unique(),
                                    default= df[filter].unique()
                                     )
   else:
-      box =  container.multiselect(**label**,
+      box =  container.multiselect(label,
                                       options= df[filter].unique()
                                       )
   return box
 
-office = sidebarfilter('office', 'Location')
-case_type = sidebarfilter('case_type', 'Case Type')
-dr_used = sidebarfilter('dr_used', 'DR Used')
-children = sidebarfilter('children', 'Children')
-family_home = sidebarfilter('family_home', 'Family Home')
-partner_solicitor = sidebarfilter('partner_solicitor', 'Partner Solicitor')
+office = sidebarfilter('office', '**Location**')
+case_type = sidebarfilter('case_type', '**Case Type**')
+dr_used = sidebarfilter('dr_used', '**DR Used**')
+children = sidebarfilter('children', '**Children**')
+family_home = sidebarfilter('family_home', '**Family Home**')
+partner_solicitor = sidebarfilter('partner_solicitor', '**Partner Solicitor**')
 
 
 df_selection = df.query(
