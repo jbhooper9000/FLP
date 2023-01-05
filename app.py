@@ -21,7 +21,7 @@ df=getdf()
 st.sidebar.image("Logo-2023.png", use_column_width=True)
 st.sidebar.header("Filters:")
 
-def sidebarfilter('filter'):
+def sidebarfilter(filter):
   
   container = st.sidebar.container()
   all = st.sidebar.checkbox("Select all", value=True)
