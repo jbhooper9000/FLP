@@ -21,23 +21,23 @@ df=getdf()
 st.sidebar.image("Logo-2023.png", use_column_width=True)
 st.sidebar.header("Filters:")
 
-def sidebarfilter(filter):
+def sidebarfilter(filter, 'Label'):
   
   container = st.sidebar.container()
   all = st.sidebar.checkbox("Select all", value=True)
  
   if all:
-      box = container.multiselect(filter,
+      box = container.multiselect('Label',
                                    options= df[filter].unique(),
                                    default= df[filter].unique()
                                     )
   else:
-      box =  container.multiselect(filter,
+      box =  container.multiselect('Label',
                                       options= df[filter].unique()
                                       )
   return box
 
-office = sidebarfilter('office')
+office = sidebarfilter('office', 'Location')
 
 case_type = st.sidebar.multiselect("Case Type",
                                   options= df.case_type.unique(),
