@@ -27,17 +27,17 @@ def sidebarfilter(filter):
   all = st.sidebar.checkbox("Select all", value=True)
  
   if all:
-      box = container.multiselect(f'filter',
+      box = container.multiselect(filter,
                                    options= df[filter].unique(),
                                    default= df[filter].unique()
                                     )
   else:
-      box =  container.multiselect(f'filter',
+      box =  container.multiselect(filter,
                                       options= df[filter].unique()
                                       )
-  return box, all
+  return box
 
-sidebarfilter('office')
+Location = sidebarfilter('office')
 
 case_type = st.sidebar.multiselect("Case Type",
                                   options= df.case_type.unique(),
