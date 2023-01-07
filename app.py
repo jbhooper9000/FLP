@@ -127,6 +127,89 @@ with right_col:
     
 st.markdown('---')
 
+
+#--  Time Series Function --#
+
+
+def seasonaldf(df, column=None, agg='count'):
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    if column is None:
+        p = pd.DataFrame(df['start_date'])
+        p['month'] = p['start_date'].dt.month_name().str[:3]
+        p['year'] = p['start_date'].dt.year
+        p['values'] = 1
+        p = p.drop(['start_date'], axis=1)
+        p = p.pivot_table(index='month', columns='year', values='values', aggfunc='count')
+        p = p.reindex(months)
+    else:
+        p = df[['start_date', column]]
+        p['month'] = p['start_date'].dt.month_name().str[:3]
+        p['year'] = p['start_date'].dt.year
+        p = p.drop(['start_date'], axis=1)
+        p = p.pivot_table(index='month', columns='year', values=column, aggfunc=agg)
+        p = p.reindex(months)
+    return p
+
+p1 = seasonaldf(df_selection, 'lifetime_value', 'sum')
+p2 = seasonaldf(df_selection, 'case_hours', 'sum')
+p3 = seasonaldf(df_selection, 'case_duration', 'sum')
+p4 = seasonaldf(df_selection, 'billings', 'sum')
+p5 = seasonaldf(df_selection)
+p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
+
+
+# --- TIME SERIES PLOT --- #
+
+fig_ts = go.Figure()
+mask = []
+for i in range(int(len(p_all.columns)/len(p1.columns))):
+    for j in range(i*len(p1.columns),len(p1.columns)+i*len(p1.columns)):
+        fig.add_trace(go.Scatter(
+                      x = p_all.index,
+                      y = p_all.iloc[:,j],
+                      name = p_all.columns[j].astype(str)
+                      )
+        )
+        mask.append(i)
+fig_ts.update_layout(
+    updatemenus=[go.layout.Updatemenu(
+        active=0,
+        buttons=list(
+            [dict(label = 'Lifetime Value',
+                  method = 'update',
+                  args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
+                          {'title': 'Lifetime Value',
+                           'showlegend':True}]),
+             
+             dict(label = 'Case Hours',
+                  method = 'update',
+                  args = [{'visible': [x == 1 for x in mask]},
+                          {'title': 'Case Hours',
+                           'showlegend':True}]),
+             
+             dict(label = 'Case Duration',
+                  method = 'update',
+                  args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
+                          {'title': 'Case Duration',
+                           'showlegend':True}]),
+             
+             dict(label = 'Billings',
+                  method = 'update',
+                  args = [{'visible': [x == 3 for x in mask]},
+                          {'title': 'Billings',
+                           'showlegend':True}]),
+             
+             dict(label = 'Number of Cases',
+                  method = 'update',
+                  args = [{'visible': [x == 4 for x in mask]}, # the index of True aligns with the indices of plot traces
+                          {'title': 'Number of Cases',
+                           'showlegend':True}])
+            ])
+        )
+    ])
+
+st.plotly_chart(fig_ts)
+
 # mat_type = df_selection.groupby(by=['communication'])['communication'].count()
 
 # fig_mattertype = px.bar(mat_type, orientation='h')
