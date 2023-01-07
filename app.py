@@ -172,7 +172,7 @@ for i in range(int(len(p_all.columns)/len(p1.columns))):
                       name = p_all.columns[j].astype(str)
                       )
         )
-        mask.append(i)
+      mask.append(i)
   except ZeroDivisionError:
     pass
 fig_ts.update_layout(
