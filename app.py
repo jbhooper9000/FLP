@@ -174,7 +174,7 @@ for i in range(int(len(p_all.columns)/len(p1.columns))):
       mask.append(i)
 fig_ts.update_layout(
     updatemenus=[go.layout.Updatemenu(
-        active=0,
+        active=1,
         buttons=list(
             [dict(label = 'Lifetime Value',
                   method = 'update',
