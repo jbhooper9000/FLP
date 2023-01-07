@@ -166,10 +166,21 @@ mask = []
 if df_selection.shape[0] != 0:
   for i in range(int(len(p_all.columns)/len(p1.columns))):
     for j in range(i*len(p1.columns),len(p1.columns)+i*len(p1.columns)):
+      if i == 0:
         fig_ts.add_trace(go.Scatter(
                         x = p_all.index,
                         y = p_all.iloc[:,j],
-                        name = p_all.columns[j].astype(str)
+                        name = p_all.columns[j].astype(str),
+                        visible = True
+                        )
+          )
+        mask.append(i)
+      else:
+        fig_ts.add_trace(go.Scatter(
+                        x = p_all.index,
+                        y = p_all.iloc[:,j],
+                        name = p_all.columns[j].astype(str),
+                        visible = False
                         )
           )
         mask.append(i)
