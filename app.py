@@ -24,7 +24,7 @@ st.sidebar.header("Filters:")
 
 def sidebarfilter(filter, label):
   
-  container = st.sidebar.container()
+  container = st.sidebar.expander(label)
   all = st.sidebar.checkbox("Select all", value=True, key=label)
  
   if all:
@@ -38,7 +38,7 @@ def sidebarfilter(filter, label):
                                       )
   return box
 
-office = st.expander(sidebarfilter('office', '**Location**'))
+office = sidebarfilter('office', '**Location**'))
 acting_solicitor = sidebarfilter('acting_solicitor', '**Solicitor**')
 case_type = sidebarfilter('case_type', '**Case Type**')
 dr_used = sidebarfilter('dr_used', '**DR Used**')
