@@ -39,7 +39,7 @@ def sidebarfilter(filter, label):
   return box
 
 office = sidebarfilter('office', '**Location**')
-staff = sidebarfilter('acting_solicitor', '**Solicitor**')
+acting_solicitor = sidebarfilter('acting_solicitor', '**Solicitor**')
 case_type = sidebarfilter('case_type', '**Case Type**')
 dr_used = sidebarfilter('dr_used', '**DR Used**')
 children = sidebarfilter('children', '**Children**')
@@ -48,7 +48,7 @@ partner_solicitor = sidebarfilter('partner_solicitor', '**Partner Solicitor**')
 
 
 df_selection = df.query(
-    "office == @office & staff == @staff & case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor"
+    "office == @office & acting_solicitor == @acting_solicitor & case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor"
     )
 
 
