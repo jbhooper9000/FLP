@@ -90,7 +90,7 @@ if df_selection.shape[0] != 0:
     median_case_duration = int(df_selection.case_duration.median())
     median_case_hours = df_selection.case_hours.median()
     avg_conflict = df_selection.cooperation.mean()
-else :
+else:
     median_lifetime_value = median_case_duration = median_case_hours = avg_conflict = 0
 
 
@@ -163,52 +163,54 @@ p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
 
 fig_ts = go.Figure()
 mask = []
-for i in range(int(len(p_all.columns)/len(p1.columns))):
-  for j in range(i*len(p1.columns),len(p1.columns)+i*len(p1.columns)):
-      fig_ts.add_trace(go.Scatter(
-                      x = p_all.index,
-                      y = p_all.iloc[:,j],
-                      name = p_all.columns[j].astype(str)
-                      )
-        )
-      mask.append(i)
-fig_ts.update_layout(
-    updatemenus=[go.layout.Updatemenu(
-        active=1,
-        buttons=list(
-            [dict(label = 'Lifetime Value',
-                  method = 'update',
-                  args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
-                          {'title': 'Lifetime Value',
-                           'showlegend':True}]),
-             
-             dict(label = 'Case Hours',
-                  method = 'update',
-                  args = [{'visible': [x == 1 for x in mask]},
-                          {'title': 'Case Hours',
-                           'showlegend':True}]),
-             
-             dict(label = 'Case Duration',
-                  method = 'update',
-                  args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
-                          {'title': 'Case Duration',
-                           'showlegend':True}]),
-             
-             dict(label = 'Billings',
-                  method = 'update',
-                  args = [{'visible': [x == 3 for x in mask]},
-                          {'title': 'Billings',
-                           'showlegend':True}]),
-             
-             dict(label = 'Number of Cases',
-                  method = 'update',
-                  args = [{'visible': [x == 4 for x in mask]}, # the index of True aligns with the indices of plot traces
-                          {'title': 'Number of Cases',
-                           'showlegend':True}])
-            ])
-        )
-    ])
+if df_selection.shape[0] != 0:
+  for i in range(int(len(p_all.columns)/len(p1.columns))):
+    for j in range(i*len(p1.columns),len(p1.columns)+i*len(p1.columns)):
+        fig_ts.add_trace(go.Scatter(
+                        x = p_all.index,
+                        y = p_all.iloc[:,j],
+                        name = p_all.columns[j].astype(str)
+                        )
+          )
+        mask.append(i)
+  fig_ts.update_layout(
+      updatemenus=[go.layout.Updatemenu(
+          active=0,
+          buttons=list(
+              [dict(label = 'Lifetime Value',
+                    method = 'update',
+                    args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
+                            {'title': 'Lifetime Value',
+                             'showlegend':True}]),
 
+               dict(label = 'Case Hours',
+                    method = 'update',
+                    args = [{'visible': [x == 1 for x in mask]},
+                            {'title': 'Case Hours',
+                             'showlegend':True}]),
+
+               dict(label = 'Case Duration',
+                    method = 'update',
+                    args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
+                            {'title': 'Case Duration',
+                             'showlegend':True}]),
+
+               dict(label = 'Billings',
+                    method = 'update',
+                    args = [{'visible': [x == 3 for x in mask]},
+                            {'title': 'Billings',
+                             'showlegend':True}]),
+
+               dict(label = 'Number of Cases',
+                    method = 'update',
+                    args = [{'visible': [x == 4 for x in mask]}, # the index of True aligns with the indices of plot traces
+                            {'title': 'Number of Cases',
+                             'showlegend':True}])
+              ])
+          )
+      ])
+else:
+  pass
 st.plotly_chart(fig_ts)
 
 # mat_type = df_selection.groupby(by=['communication'])['communication'].count()
