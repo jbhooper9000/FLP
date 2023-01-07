@@ -164,17 +164,17 @@ p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
 fig_ts = go.Figure()
 mask = []
 for i in range(int(len(p_all.columns)/len(p1.columns))):
+  try:
     for j in range(i*len(p1.columns),len(p1.columns)+i*len(p1.columns)):
-      try:
-        fig_ts.add_trace(go.Scatter(
+      fig_ts.add_trace(go.Scatter(
                       x = p_all.index,
                       y = p_all.iloc[:,j],
                       name = p_all.columns[j].astype(str)
                       )
         )
         mask.append(i)
-      except ZeroDivisionError:
-        pass
+  except ZeroDivisionError:
+    pass
 fig_ts.update_layout(
     updatemenus=[go.layout.Updatemenu(
         active=0,
