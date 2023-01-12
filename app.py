@@ -150,8 +150,8 @@ def seasonaldf(df, column=None, agg='count'):
     return p
 
 p1 = seasonaldf(df_selection, 'lifetime_value', 'sum')
-p2 = seasonaldf(df_selection, 'case_hours', 'sum')
-p3 = seasonaldf(df_selection, 'case_duration', 'sum')
+p2 = seasonaldf(df_selection, 'case_hours', 'np.median')
+p3 = seasonaldf(df_selection, 'case_duration', 'np.median')
 p4 = seasonaldf(df_selection, 'billings', 'sum')
 p5 = seasonaldf(df_selection)
 p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
@@ -186,25 +186,25 @@ if df_selection.shape[0] != 0:
       updatemenus=[go.layout.Updatemenu(
           active=0,
           buttons=list(
-              [dict(label = 'Lifetime Value',
+              [dict(label = 'Total Lifetime Value',
                     method = 'update',
                     args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
                             {'title': 'Lifetime Value',
                              'showlegend':True}]),
 
-               dict(label = 'Case Hours',
+               dict(label = 'Median Case Hours',
                     method = 'update',
                     args = [{'visible': [x == 1 for x in mask]},
                             {'title': 'Case Hours',
                              'showlegend':True}]),
 
-               dict(label = 'Case Duration',
+               dict(label = 'Median Case Duration',
                     method = 'update',
                     args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
                             {'title': 'Case Duration',
                              'showlegend':True}]),
 
-               dict(label = 'Billings',
+               dict(label = 'Total Billings',
                     method = 'update',
                     args = [{'visible': [x == 3 for x in mask]},
                             {'title': 'Billings',
