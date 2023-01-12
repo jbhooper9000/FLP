@@ -150,8 +150,8 @@ def seasonaldf(df, column=None, agg='count'):
     return p
 
 p1 = seasonaldf(df_selection, 'lifetime_value', 'sum')
-p2 = seasonaldf(df_selection, 'case_hours', 'np.median')
-p3 = seasonaldf(df_selection, 'case_duration', 'np.median')
+p2 = seasonaldf(df_selection, 'case_hours', np.median)
+p3 = seasonaldf(df_selection, 'case_duration', np.median)
 p4 = seasonaldf(df_selection, 'billings', 'sum')
 p5 = seasonaldf(df_selection)
 p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
