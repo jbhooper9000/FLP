@@ -138,7 +138,7 @@ def seasonaldf(df, column=None, agg='count'):
         p['year'] = p['start_date'].dt.year
         p['values'] = 1
         p = p.drop(['start_date'], axis=1)
-        p = p.pivot_table(index='month', columns='year', values='values', aggfunc='count')
+        p = p.pivot_table(index='month', columns='year', values='values', aggfunc=agg)
         p = p.reindex(months)
     else:
         p = df[['start_date', column]]
@@ -149,7 +149,7 @@ def seasonaldf(df, column=None, agg='count'):
         p = p.reindex(months)
     return p
 
-p1 = seasonaldf(df_selection, 'lifetime_value', 'sum')
+p1 = seasonaldf(df_selection, 'lifetime_value', np.sum)
 p2 = seasonaldf(df_selection, 'case_hours', 'sum')
 p3 = seasonaldf(df_selection, 'case_duration', 'sum')
 p4 = seasonaldf(df_selection, 'billings', 'sum')
