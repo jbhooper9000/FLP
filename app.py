@@ -150,11 +150,12 @@ def seasonaldf(df, column=None, agg='count'):
         p = p.reindex(months)
     return p
 
-p1 = seasonaldf(df_selection, 'lifetime_value', np.sum)
-p2 = seasonaldf(df_selection, 'case_hours', np.median)
-p3 = seasonaldf(df_selection, 'case_duration', np.median)
-p4 = seasonaldf(df_selection, 'billings', 'sum')
-p5 = seasonaldf(df_selection)
+p1 = seasonaldf(df_selection)
+p2 = seasonaldf(df_selection, 'lifetime_value', np.sum)
+p3 = seasonaldf(df_selection, 'case_hours', np.median)
+p4 = seasonaldf(df_selection, 'case_duration', np.median)
+p5 = seasonaldf(df_selection, 'billings', 'sum')
+
 p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
 
 
@@ -187,34 +188,34 @@ if df_selection.shape[0] != 0:
       updatemenus=[go.layout.Updatemenu(
           active=0,
           buttons=list(
-              [dict(label = 'Total Lifetime Value',
+              [dict(label = 'Number of Cases',
                     method = 'update',
                     args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
+                            {'title': 'Number of Cases',
+                             'showlegend':True}]),
+
+               dict(label = 'Lifetime Value',
+                    method = 'update',
+                    args = [{'visible': [x == 1 for x in mask]},
                             {'title': 'Lifetime Value',
                              'showlegend':True}]),
 
-               dict(label = 'Median Case Hours',
+               dict(label = 'Case Hours',
                     method = 'update',
-                    args = [{'visible': [x == 1 for x in mask]},
+                    args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
                             {'title': 'Case Hours',
                              'showlegend':True}]),
 
-               dict(label = 'Median Case Duration',
+               dict(label = 'Case Duration',
                     method = 'update',
-                    args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
+                    args = [{'visible': [x == 3 for x in mask]},
                             {'title': 'Case Duration',
                              'showlegend':True}]),
 
-               dict(label = 'Total Billings',
-                    method = 'update',
-                    args = [{'visible': [x == 3 for x in mask]},
-                            {'title': 'Billings',
-                             'showlegend':True}]),
-
-               dict(label = 'Number of Cases',
+               dict(label = 'Billings',
                     method = 'update',
                     args = [{'visible': [x == 4 for x in mask]}, # the index of True aligns with the indices of plot traces
-                            {'title': 'Number of Cases',
+                            {'title': 'Billings',
                              'showlegend':True}])
               ])
           )
