@@ -162,7 +162,6 @@ p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
 # --- TIME SERIES PLOT --- #
 
 fig_ts = go.Figure()
-fig_ts.layout(title='Number of Cases')
 mask = []
 if df_selection.shape[0] != 0:
   for i in range(int(len(p_all.columns)/len(p1.columns))):
@@ -172,7 +171,8 @@ if df_selection.shape[0] != 0:
                         x = p_all.index,
                         y = p_all.iloc[:,j],
                         name = p_all.columns[j].astype(str),
-                        visible = True
+                        visible = True,
+                        title = 'Number of Cases
                         )
           )
         mask.append(i)
@@ -181,7 +181,8 @@ if df_selection.shape[0] != 0:
                         x = p_all.index,
                         y = p_all.iloc[:,j],
                         name = p_all.columns[j].astype(str),
-                        visible = False
+                        visible = False,
+                        title = 'Number of Cases'
                         )
           )
         mask.append(i)
