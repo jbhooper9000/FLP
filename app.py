@@ -26,7 +26,7 @@ st.sidebar.header("Filters:")
 def sidebarfilter(filter, label):
   
   container = st.sidebar.expander(label)
-  all = container.checkbox("Select all", value=True, key=label)
+  all = container.checkbox("Select all", value=True)
   if all:
       box = container.multiselect('', options= df[filter].unique(),
                                    default= df[filter].unique()
