@@ -162,6 +162,7 @@ p_all = pd.concat([p1,p2,p3,p4,p5], axis=1)
 # --- TIME SERIES PLOT --- #
 
 fig_ts = go.Figure()
+fig_ts.layout(title='Number of Cases')
 mask = []
 if df_selection.shape[0] != 0:
   for i in range(int(len(p_all.columns)/len(p1.columns))):
