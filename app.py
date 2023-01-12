@@ -171,8 +171,7 @@ if df_selection.shape[0] != 0:
                         x = p_all.index,
                         y = p_all.iloc[:,j],
                         name = p_all.columns[j].astype(str),
-                        visible = True,
-                        title = 'Number of Cases
+                        visible = True
                         )
           )
         mask.append(i)
@@ -181,12 +180,11 @@ if df_selection.shape[0] != 0:
                         x = p_all.index,
                         y = p_all.iloc[:,j],
                         name = p_all.columns[j].astype(str),
-                        visible = False,
-                        title = 'Number of Cases'
+                        visible = False
                         )
           )
         mask.append(i)
-  fig_ts.update_layout(
+  fig_ts.update_layout(title='Number of Cases',
       updatemenus=[go.layout.Updatemenu(
           active=0,
           buttons=list(
