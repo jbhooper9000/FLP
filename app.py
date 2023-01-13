@@ -31,10 +31,12 @@ def sidebarfilter(df, filter, label):
   all = container.checkbox("Select all", value=True, key=label)
   if all:
       box = container.multiselect('', options= df[filter].unique(),
-                                   default= df[filter].unique()
+                                   default= df[filter].unique(),
+                                  key = label
                                     )
   else:
-      box =  container.multiselect('', options= df[filter].unique()
+      box =  container.multiselect('', options= df[filter].unique(),
+                                   key = label
                                       )
   return box
 
