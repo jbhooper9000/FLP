@@ -41,19 +41,20 @@ def sidebarfilter(df, filter, label):
   return box
 
 office = sidebarfilter(df, 'office', '**Location**')
-
 df_office = df.query('office == @office')
 
 acting_solicitor = sidebarfilter(df_office, 'acting_solicitor', '**Solicitor**')
-case_type = sidebarfilter(df_office, 'case_type', '**Case Type**')
-dr_used = sidebarfilter(df_office, 'dr_used', '**DR Used**')
-children = sidebarfilter(df_office, 'children', '**Children**')
-family_home = sidebarfilter(df_office, 'family_home', '**Family Home**')
-partner_solicitor = sidebarfilter(df_office, 'partner_solicitor', '**Partner Solicitor**')
+df_solicitor = df_office.query('acting_solicitor == @acting_solicitor')
+
+case_type = sidebarfilter(df_solicitor, 'case_type', '**Case Type**')
+dr_used = sidebarfilter(df_solicitor, 'dr_used', '**DR Used**')
+children = sidebarfilter(df_solicitor, 'children', '**Children**')
+family_home = sidebarfilter(df_solicitor, 'family_home', '**Family Home**')
+partner_solicitor = sidebarfilter(df_solicitor, 'partner_solicitor', '**Partner Solicitor**')
 
 
-df_selection = df_office.query(
-               'acting_solicitor == @acting_solicitor & case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor'
+df_selection = df_solicitor.query(
+               'case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor'
     )
 
 
