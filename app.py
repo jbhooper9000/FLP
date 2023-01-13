@@ -138,6 +138,7 @@ st.markdown('---')
 
 #--  Time Series Function --#
 
+st.subheader('Time Series Plot')
 
 def seasonaldf(df, column=None, agg='count'):
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
