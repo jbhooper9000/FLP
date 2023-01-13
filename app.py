@@ -23,7 +23,9 @@ df=getdf()
 st.sidebar.image("Logo-2023.png", use_column_width=True)
 st.sidebar.header("Filters:")
 
-def sidebarfilter(filter, label):
+
+
+def sidebarfilter(df, filter, label):
   
   container = st.sidebar.expander(label)
   all = container.checkbox("Select all", value=True, key=label)
@@ -36,17 +38,20 @@ def sidebarfilter(filter, label):
                                       )
   return box
 
-office = sidebarfilter('office', '**Location**')
-acting_solicitor = sidebarfilter('acting_solicitor', '**Solicitor**')
-case_type = sidebarfilter('case_type', '**Case Type**')
-dr_used = sidebarfilter('dr_used', '**DR Used**')
-children = sidebarfilter('children', '**Children**')
-family_home = sidebarfilter('family_home', '**Family Home**')
-partner_solicitor = sidebarfilter('partner_solicitor', '**Partner Solicitor**')
+office = sidebarfilter(df, 'office', '**Location**')
+
+df_office = df.query("office == @office)
+
+acting_solicitor = sidebarfilter(df_office, 'acting_solicitor', '**Solicitor**')
+case_type = sidebarfilter(df_office, 'case_type', '**Case Type**')
+dr_used = sidebarfilter(df_office, 'dr_used', '**DR Used**')
+children = sidebarfilter(df_office, 'children', '**Children**')
+family_home = sidebarfilter(df_office, 'family_home', '**Family Home**')
+partner_solicitor = sidebarfilter(df_office, 'partner_solicitor', '**Partner Solicitor**')
 
 
-df_selection = df.query(
-    "office == @office & acting_solicitor == @acting_solicitor & case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor"
+df_selection = df_office.query(
+               'acting_solicitor == @acting_solicitor & case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor"
     )
 
 
