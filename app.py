@@ -32,11 +32,11 @@ def sidebarfilter(df, filter, label):
   if all:
       box = container.multiselect('', options= df[filter].unique(),
                                    default= df[filter].unique(),
-                                  key = label
+                                  key = filter
                                     )
   else:
       box =  container.multiselect('', options= df[filter].unique(),
-                                   key = label
+                                   key = filter
                                       )
   return box
 
