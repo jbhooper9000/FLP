@@ -14,11 +14,12 @@ st.set_page_config(page_title ='Family Law Partners - Dashboard',
 @st.cache
 def getdf():
     df = pd.read_excel('https://github.com/jbhooper9000/FLP/blob/main/PyTransform.xlsx?raw=true')
+    df['office'] = df['office'].replace({'brtn': 'Brighton', 'hors': 'Horsham', 'lndn': 'London', 'othr': 'Other'})
+    df['acting_solicitor'] = df['acting_solicitor'].str.upper()
     return df
 
 df=getdf()
-df['office'] = df['office'].replace({'brtn': 'Brighton', 'hors': 'Horsham', 'lndn': 'London', 'othr': 'Other'})
-df['acting_solicitor'] = df['acting_solicitor'].str.upper()
+
 
 # --- SIDEBAR ---
 
