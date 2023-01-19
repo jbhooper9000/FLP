@@ -263,7 +263,7 @@ for i in range(len(df_pie.columns)):
             fig_pie.add_trace(go.Pie(
                       values = df_pie[df_pie.columns[i]],
                       labels = df_pie['office'],
-                      visible = True
+                      visible = False
                       ))
             pimask.append(i)
 
