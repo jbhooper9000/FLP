@@ -247,7 +247,7 @@ df_pie = df.query(
     )
 
 df_pie = df_pie[['office','lifetime_value','case_hours','case_duration','billings']]
-df_pie = df_pie['office'].replace(to_replace='none', value=np.nan).dropna()
+df_pie['office'] = df_pie['office'].replace(to_replace='none', value=np.nan).dropna()
 
 fig_pie = go.Figure()
 pimask = []
