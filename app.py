@@ -17,6 +17,8 @@ def getdf():
     return df
 
 df=getdf()
+df['office'] = df['office'].replace({'brtn': 'Brighton', 'hors': 'Horsham', 'lndn': 'London', 'othr': 'Other'})
+df['acting_solicitor'] = df['acting_solicitor'].str.upper()
 
 # --- SIDEBAR ---
 
@@ -245,9 +247,65 @@ df_pie = df.query(
     )
 df_pie = df_pie.dropna(subset=['office'])
 
+df_pie = df_pie[['office','lifetime_value','case_hours','case_duration','billings']]
 
-fig_pie = px.pie(df_pie, x='lifetime_value', nbins=50)
-fig_pie.update_layout(plot_bgcolor='#ffffff')
+fig_pie = go.Figure()
+pimask = []
+for i in range(len(df_pie.columns)):
+        if i == 0:
+            fig_pie.add_trace(go.Pie(
+                      labels = df_pie['office'],
+                      visible = True
+                      ))
+        else:
+            fig_pie.add_trace(go.Pie(
+                      values = df_pie[df_pie.columns[i]],
+                      labels = df_pie['office'],
+                      visible = True
+                      ))
+        pimask.append(i)
+
+
+fig_pie.update_layout(
+    updatemenus=[go.layout.Updatemenu(
+        active=0,
+        buttons=list(
+            [dict(label = 'Number of Cases',
+                  method = 'update',
+                  args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
+                          {'title': 'Number of Cases',
+                           'showlegend':True}]),
+             
+             dict(label = 'Lifetime Value',
+                  method = 'update',
+                  args = [{'visible': [x == 1 for x in mask]},
+                          {'title': 'Lifetime Value',
+                           'showlegend':True}]),
+             
+             dict(label = 'Case Hours',
+                  method = 'update',
+                  args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
+                          {'title': 'Case Hours',
+                           'showlegend':True}]),
+             
+             dict(label = 'Case Duration',
+                  method = 'update',
+                  args = [{'visible': [x == 3 for x in mask]},
+                          {'title': 'Case Duration',
+                           'showlegend':True}]),
+             
+             dict(label = 'Billings',
+                  method = 'update',
+                  args = [{'visible': [x == 4 for x in mask]}, # the index of True aligns with the indices of plot traces
+                          {'title': 'Billings',
+                           'showlegend':True}])
+             
+             
+            ])
+        )
+    ])
+
+st.plotly_chart(fig_pie)
 
 st.markdown('---')
 
