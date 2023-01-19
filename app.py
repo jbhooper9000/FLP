@@ -233,23 +233,14 @@ else:
   pass
 st.plotly_chart(fig_ts)
 
-# mat_type = df_selection.groupby(by=['communication'])['communication'].count()
+st.markdown('---')
 
-# fig_mattertype = px.bar(mat_type, orientation='h')
-# fig_mattertype.update_layout(plot_bgcolor='#ffffff',
-#                                 xaxis=(dict(showgrid=False)),
-#                                 yaxis_title="Matter Type",
-#                                 xaxis_title="Number of Cases",
-#                                 showlegend=False)
+# Dataframe
 
+st.subheader('DataFrame')
 
-
-# st.plotly_chart(fig_mattertype)
-
-
-
-# st.plotly_chart(fig_conflict)
-
+st.dataframe(df_selection)
+  
 # --- HIDE Streamlit STYLE
 
 hide_style = """
