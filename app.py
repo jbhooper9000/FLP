@@ -269,7 +269,7 @@ for i in range(len(df_pie.columns)):
 
 fig_pie.update_layout(title='Number of Cases',
     updatemenus=[go.layout.Updatemenu(
-        active=1,
+        active=3,
         buttons=list(
             [dict(label = 'Number of Cases',
                   method = 'update',
