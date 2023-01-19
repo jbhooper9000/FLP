@@ -241,7 +241,7 @@ st.markdown('---')
 
 #---  PIE PLOT ---#
 
-st.subheader('Pie Plot')
+st.subheader('Location Pie Chart')
 
 df_pie = df.query(
                'case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor'
