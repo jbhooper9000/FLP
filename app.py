@@ -272,31 +272,31 @@ fig_pie.update_layout(
         buttons=list(
             [dict(label = 'Number of Cases',
                   method = 'update',
-                  args = [{'visible': [x == 0 for x in mask]}, # the index of True aligns with the indices of plot traces
+                  args = [{'visible': [x == 0 for x in pimask]}, # the index of True aligns with the indices of plot traces
                           {'title': 'Number of Cases',
                            'showlegend':True}]),
              
              dict(label = 'Lifetime Value',
                   method = 'update',
-                  args = [{'visible': [x == 1 for x in mask]},
+                  args = [{'visible': [x == 1 for x in pimask]},
                           {'title': 'Lifetime Value',
                            'showlegend':True}]),
              
              dict(label = 'Case Hours',
                   method = 'update',
-                  args = [{'visible': [x == 2 for x in mask]}, # the index of True aligns with the indices of plot traces
+                  args = [{'visible': [x == 2 for x in pimask]}, # the index of True aligns with the indices of plot traces
                           {'title': 'Case Hours',
                            'showlegend':True}]),
              
              dict(label = 'Case Duration',
                   method = 'update',
-                  args = [{'visible': [x == 3 for x in mask]},
+                  args = [{'visible': [x == 3 for x in pimask]},
                           {'title': 'Case Duration',
                            'showlegend':True}]),
              
              dict(label = 'Billings',
                   method = 'update',
-                  args = [{'visible': [x == 4 for x in mask]}, # the index of True aligns with the indices of plot traces
+                  args = [{'visible': [x == 4 for x in pimask]}, # the index of True aligns with the indices of plot traces
                           {'title': 'Billings',
                            'showlegend':True}])
              
