@@ -239,7 +239,7 @@ st.plotly_chart(fig_ts)
 st.markdown('---')
 
 
-#--  Pie Plot --#
+#---  PIE PLOT ---#
 
 st.subheader('Pie Plot')
 
@@ -258,18 +258,19 @@ for i in range(len(df_pie.columns)):
                       labels = df_pie['office'],
                       visible = True
                       ))
+            pimask.append(i)
         else:
             fig_pie.add_trace(go.Pie(
                       values = df_pie[df_pie.columns[i]],
                       labels = df_pie['office'],
                       visible = True
                       ))
-        pimask.append(i)
+            pimask.append(i)
 
 
 fig_pie.update_layout(title='Number of Cases',
     updatemenus=[go.layout.Updatemenu(
-        active=3,
+        active=0,
         buttons=list(
             [dict(label = 'Number of Cases',
                   method = 'update',
