@@ -235,6 +235,22 @@ st.plotly_chart(fig_ts)
 
 st.markdown('---')
 
+
+#--  Pie Plot --#
+
+st.subheader('Pie Plot')
+
+df_pie = df.query(
+               'case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor'
+    )
+df_pie = df_pie.dropna(subset=['office'])
+
+
+fig_pie = px.pie(df_pie, x='lifetime_value', nbins=50)
+fig_pie.update_layout(plot_bgcolor='#ffffff')
+
+st.markdown('---')
+
 # Dataframe
 
 st.subheader('DataFrame')
