@@ -267,9 +267,9 @@ for i in range(len(df_pie.columns)):
         pimask.append(i)
 
 
-fig_pie.update_layout(
+fig_pie.update_layout(title='Number of Cases',
     updatemenus=[go.layout.Updatemenu(
-        active=0,
+        active=1,
         buttons=list(
             [dict(label = 'Number of Cases',
                   method = 'update',
