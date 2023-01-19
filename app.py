@@ -308,7 +308,7 @@ st.markdown('---')
 
 st.subheader('DataFrame')
 
-st.dataframe(df_selection)
+st.dataframe(df_selection.drop(['dob'], axis=1))
   
 # --- HIDE Streamlit STYLE
 
