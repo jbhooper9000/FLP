@@ -251,6 +251,7 @@ df_pie = df_pie[['office','lifetime_value','case_hours','case_duration','billing
 df_pie =  df_pie[df_pie.office != 'none']
 
 fig_pie = go.Figure()
+colours = ['gold', 'mediumturquoise', 'darkorange', 'lightgreen']
 pimask = []
 for i in range(len(df_pie.columns)):
         if i == 0:
@@ -266,7 +267,8 @@ for i in range(len(df_pie.columns)):
                       visible = False
                       ))
             pimask.append(i)
-
+fig_pie.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
+                      marker=dict(colors=colours))
 fig_pie.update_layout(title='Number of Cases',
     updatemenus=[go.layout.Updatemenu(
          active=0,
