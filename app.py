@@ -267,7 +267,7 @@ for i in range(len(df_pie.columns)):
                       visible = False
                       ))
             pimask.append(i)
-fig_pie.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=15,
+fig_pie.update_traces(hoverinfo='label+percent', textinfo='%{value:.0f} <br> %{percent}', textfont_size=15,
                       marker=dict(colors=colours))
 fig_pie.update_layout(title='Number of Cases',
     updatemenus=[go.layout.Updatemenu(
