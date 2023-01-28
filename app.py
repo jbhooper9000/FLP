@@ -54,15 +54,15 @@ asset_select = asset_container.selectbox('Select Asset Type', options=['Total As
 if asset_select == 'Other Asset Value':
   assets = asset_container.select_slider('Asset Value',
                                        options = df_solicitor['other_asset_value'],
-                                       values = df_solicitor['other_asset_value'])
+                                       value = df_solicitor['other_asset_value'])
 elif asset_select == 'Family Home Value':
   assets = asset_container.select_slider('Asset Value',
                                        options = df_solicitor['family_home_value'],
-                                       values = df_solicitor['family_home_value'])
+                                       value = df_solicitor['family_home_value'])
 else:
   assets = asset_container.select_slider('Asset Value',
                                        options = df_solicitor['total_net_asset'],
-                                       values = df_solicitor['total_net_asset'])
+                                       value = df_solicitor['total_net_asset'])
 
 case_type = sidebarfilter(df_solicitor, 'case_type', '**Case Type**')
 dr_used = sidebarfilter(df_solicitor, 'dr_used', '**DR Used**')
