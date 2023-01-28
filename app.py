@@ -60,9 +60,7 @@ asset_container = st.sidebar.expander('**Assets**')
 #                                        options = df_solicitor['family_home_value'],
 #                                        value = df_solicitor['family_home_value'])
 # else:
-assets = asset_container.slider('Asset Value',
-                                       options = df_solicitor['total_net_asset'],
-                                       value = df_solicitor['total_net_asset'])
+assets = asset_container.slider('Asset Value', value = df_solicitor['total_net_asset'])
 
 case_type = sidebarfilter(df_solicitor, 'case_type', '**Case Type**')
 dr_used = sidebarfilter(df_solicitor, 'dr_used', '**DR Used**')
