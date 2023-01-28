@@ -49,6 +49,21 @@ df_office = df.query('office == @office')
 acting_solicitor = sidebarfilter(df_office, 'acting_solicitor', '**Solicitor**')
 df_solicitor = df_office.query('acting_solicitor == @acting_solicitor')
 
+asset_container = st.sidebar.expander('Assets')
+asset_select = asset_container.selectbox('Select Asset Type', options=['Total Asset Value', 'Family Home Value', 'Other Asset Value'])
+if asset_select == 'Other Asset Value':
+  assets = asset_container.select_slider('Asset Value',
+                                       options = df_solicitor['other_asset_value'],
+                                       values = df_solicitor['other_asset_value'])
+elif asset_select == 'Family Home Value':
+  assets = asset_container.select_slider('Asset Value',
+                                       options = df_solicitor['family_home_value'],
+                                       values = df_solicitor['family_home_value'])
+else:
+  assets = asset_container.select_slider('Asset Value',
+                                       options = df_solicitor['total_net_asset'],
+                                       values = df_solicitor['total_net_asset'])
+
 case_type = sidebarfilter(df_solicitor, 'case_type', '**Case Type**')
 dr_used = sidebarfilter(df_solicitor, 'dr_used', '**DR Used**')
 children = sidebarfilter(df_solicitor, 'children', '**Children**')
