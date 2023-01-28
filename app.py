@@ -60,7 +60,7 @@ asset_container = st.sidebar.expander('**Assets**')
 #                                        options = df_solicitor['family_home_value'],
 #                                        value = df_solicitor['family_home_value'])
 # else:
-assets = asset_container.select_slider('Asset Value',
+assets = asset_container.slider('Asset Value',
                                        options = df_solicitor['total_net_asset'],
                                        value = df_solicitor['total_net_asset'])
 
