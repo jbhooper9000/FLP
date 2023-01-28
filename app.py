@@ -251,26 +251,22 @@ df_pie = df_pie[['office','lifetime_value','case_hours','case_duration','billing
 df_pie =  df_pie[df_pie.office != 'none']
 
 fig_pie = go.Figure()
-colours = ['gold', 'mediumturquoise', 'darkorange', 'lightgreen']
 pimask = []
 for i in range(len(df_pie.columns)):
         if i == 0:
             fig_pie.add_trace(go.Pie(
                       labels = df_pie['office'],
-                      visible = True,
-                      marker=dict(colors=colours)
+                      visible = True
                       ))
             pimask.append(i)
         else:
             fig_pie.add_trace(go.Pie(
                       values = df_pie[df_pie.columns[i]],
                       labels = df_pie['office'],
-                      visible = False,
-                      marker=dict(colors=colours)
+                      visible = False
                       ))
             pimask.append(i)
-fig_pie.update_traces(hoverinfo='label+percent', textinfo='value', texttemplate='%{value:.0f} <br> %{percent}', textfont_size=15,
-                      marker=dict(colors=colours))
+fig_pie.update_traces(hoverinfo='label+percent', textinfo='value', texttemplate='%{value:.0f} <br> %{percent}', textfont_size=15)
 fig_pie.update_layout(title='Number of Cases',
     updatemenus=[go.layout.Updatemenu(
          active=0,
@@ -278,23 +274,23 @@ fig_pie.update_layout(title='Number of Cases',
              [dict(label = 'Number of Cases',
                    method = 'update',
                    args = [{'visible': [x == 0 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'}, 
-                           {'title': 'Number of Cases', 'showlegend':True, 'marker':dict(colors=colours)}]),
+                           {'title': 'Number of Cases', 'showlegend':True}]),
                dict(label = 'Lifetime Value',
                     method = 'update',
                     args = [{'visible': [x == 1 for x in pimask], 'texttemplate' : '\u00A3%{value} <br> %{percent}'},
-                            {'title': 'Lifetime Value', 'showlegend':True, 'marker':dict(colors=colours)}]),
+                            {'title': 'Lifetime Value', 'showlegend':True}]),
                dict(label = 'Case Hours',
                     method = 'update',
                     args = [{'visible': [x == 2 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'},
-                            {'title': 'Case Hours', 'showlegend':True, 'marker':dict(colors=colours)}]),
+                            {'title': 'Case Hours', 'showlegend':True}]),
                dict(label = 'Case Duration',
                     method = 'update',
                     args = [{'visible': [x == 3 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'},
-                            {'title': 'Case Duration', 'showlegend':True, 'marker':dict(colors=colours)}]),
+                            {'title': 'Case Duration', 'showlegend':True}]),
                dict(label = 'Billings',
                     method = 'update',
                     args = [{'visible': [x == 4 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'}, 
-                            {'title': 'Billings', 'showlegend':True, 'marker':dict(colors=colours)}])
+                            {'title': 'Billings', 'showlegend':True}])
               ])
           )
       ])
