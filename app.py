@@ -278,23 +278,23 @@ fig_pie.update_layout(title='Number of Cases',
              [dict(label = 'Number of Cases',
                    method = 'update',
                    args = [{'visible': [x == 0 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'}, 
-                           {'title': 'Number of Cases', 'showlegend':True, marker=dict(colors=colours)}]),
+                           {'title': 'Number of Cases', 'showlegend':True, 'marker':dict(colors=colours)}]),
                dict(label = 'Lifetime Value',
                     method = 'update',
                     args = [{'visible': [x == 1 for x in pimask], 'texttemplate' : '\u00A3%{value} <br> %{percent}'},
-                            {'title': 'Lifetime Value', 'showlegend':True, marker=dict(colors=colours)}]),
+                            {'title': 'Lifetime Value', 'showlegend':True, 'marker':dict(colors=colours)}]),
                dict(label = 'Case Hours',
                     method = 'update',
                     args = [{'visible': [x == 2 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'},
-                            {'title': 'Case Hours', 'showlegend':True, marker=dict(colors=colours)}]),
+                            {'title': 'Case Hours', 'showlegend':True, 'marker':dict(colors=colours)}]),
                dict(label = 'Case Duration',
                     method = 'update',
                     args = [{'visible': [x == 3 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'},
-                            {'title': 'Case Duration', 'showlegend':True, marker=dict(colors=colours)}]),
+                            {'title': 'Case Duration', 'showlegend':True, 'marker':dict(colors=colours)}]),
                dict(label = 'Billings',
                     method = 'update',
                     args = [{'visible': [x == 4 for x in pimask], 'texttemplate' : '%{value:.0f} <br> %{percent}'}, 
-                            {'title': 'Billings', 'showlegend':True, marker=dict(colors=colours)}])
+                            {'title': 'Billings', 'showlegend':True, 'marker':dict(colors=colours)}])
               ])
           )
       ])
