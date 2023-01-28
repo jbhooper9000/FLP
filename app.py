@@ -258,14 +258,14 @@ for i in range(len(df_pie.columns)):
             fig_pie.add_trace(go.Pie(
                       labels = df_pie['office'],
                       visible = True
-                      ), marker=dict(colors=colours))
+                      ), colors=colours)
             pimask.append(i)
         else:
             fig_pie.add_trace(go.Pie(
                       values = df_pie[df_pie.columns[i]],
                       labels = df_pie['office'],
                       visible = False
-                      ), marker=dict(colors=colours))
+                      ), colors=colours)
             pimask.append(i)
 fig_pie.update_traces(hoverinfo='label+percent', textinfo='value', texttemplate='%{value:.0f} <br> %{percent}', textfont_size=15,
                       marker=dict(colors=colours))
