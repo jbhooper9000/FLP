@@ -62,8 +62,8 @@ asset_container = st.sidebar.expander('**Assets**')
 # else:
 assetlist = df_solicitor['total_net_asset'].astype(float)
 assets = asset_container.slider('Asset Value', 
-                                assetlist.min(), 
-                                assetlist.max(), 
+                                float(assetlist.min()), 
+                                float(assetlist.max()), 
                                 (assetlist.quantile(0.25),assetlist.quantile(0.25)))
 
 case_type = sidebarfilter(df_solicitor, 'case_type', '**Case Type**')
