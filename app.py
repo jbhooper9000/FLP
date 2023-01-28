@@ -46,7 +46,7 @@ def sidebarfilter(df, filter, label):
 office = sidebarfilter(df, 'office', '**Location**')
 df_office = df.query('office == @office')
 
-acting_solicitor = sidebarfilter(df_office, 'aceting_solicitor', '**Solicitor**')
+acting_solicitor = sidebarfilter(df_office, 'acting_solicitor', '**Solicitor**')
 df_solicitor = df_office.query('acting_solicitor == @acting_solicitor')
 
 asset_container = st.sidebar.expander('**Assets**')
