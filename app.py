@@ -51,11 +51,11 @@ df_solicitor = df_office.query('acting_solicitor == @acting_solicitor')
 
 asset_container = st.sidebar.expander('**Assets**')
 asset_select = asset_container.selectbox('Select Asset Type', options=['Total Asset Value', 'Family Home Value', 'Other Asset Value'])
-if asset_select == 'Other Asset Value':
+if 'Other Asset Value' in asset_select:
   assets = asset_container.select_slider('Asset Value',
                                        options = df_solicitor['other_asset_value'],
                                        value = df_solicitor['other_asset_value'])
-elif asset_select == 'Family Home Value':
+elif 'Family Home Value' in asset_select:
   assets = asset_container.select_slider('Asset Value',
                                        options = df_solicitor['family_home_value'],
                                        value = df_solicitor['family_home_value'])
