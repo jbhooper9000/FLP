@@ -245,9 +245,9 @@ st.subheader('Location Pie Chart')
 
 df_pie = df.query(
                'case_type == @case_type & dr_used == @dr_used & children == @children &  family_home == @family_home & partner_solicitor == @partner_solicitor'
-    )
+    ).sort_values(by=['office'])
 
-df_pie = df_pie[['office','lifetime_value','case_hours','case_duration','billings']].sort_values(by=['office'])
+df_pie = df_pie[['office','lifetime_value','case_hours','case_duration','billings']]
 df_pie =  df_pie[df_pie.office != 'none']
 
 fig_pie = go.Figure()
